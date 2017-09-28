@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        //ajax不能跨網域
+    function loadDoc()
+    {
+        var xhttp;
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        }
+        else {
+            //IE5 IE6才適用舊版寫法
+            xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+        }
+
+        //readystate改變的時候執行
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        //open(method, url, async, user, psw)
+        xhttp.open("POST", "Default2.aspx", true);//true 非同步 false同步(不建議)
+        //setRequestHeader(header, value)
+        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhttp.send("name=Kuan&age=24");//POST的參數要改放這裡
+
+    }
+    </script>
+</head>
+<body>
+    <div id="demo">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+    <!--readystate
+    0: request not initialized
+    1: server connection established
+    2: request received
+    3: processing request
+    4: request finished and response is ready
+    status
+    200: "OK"
+    403: "Forbidden"
+    404: "Page not found"
+    For a complete list go to the Http Messages Reference
+    statusText	
+    Returns the status-text (e.g. "OK" or "Not Found")-->
+</body>
+</html>

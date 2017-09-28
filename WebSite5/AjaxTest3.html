@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        //改成寫方法呼叫 較彈性
+        function loadDoc(url, cfunction)
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    cfunction(this);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+
+
+        }
+        function myFunction(xhttp)
+        {
+            document.getElementById("demo").innerHTML = xhttp.responseText;
+        }
+        function myFunction(xhttp) {
+            document.getElementById("demo").innerHTML = xhttp.responseText;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc('ajax_info.txt',myFunction)">Change Content</button>
+        <button type="button" onclick="loadDoc('Default.aspx?name=Kuan&age=24', myFunction)">Change Content2</button>
+    </div>
+</body>
+</html>

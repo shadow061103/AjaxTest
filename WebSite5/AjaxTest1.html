@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        //ajax不能跨網域
+    function loadDoc()
+    {
+        var xhttp;
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        }
+        else {
+            //IE5 IE6才適用舊版寫法
+            xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+        }
+
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        //open(method, url, async, user, psw)
+        xhttp.open("Get", "Default.aspx?name=Kuan&age=24", true);
+        xhttp.send();
+
+    }
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+</body>
+</html>
